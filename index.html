@@ -73,13 +73,7 @@
       <p class="response"></p>
     </div>
 
-    <!--
-      Generally you'll want your js in a separate file. If you include the script, whether
-      inline or separate, at the bottom of the body element, as you did initially, it will
-      automatically execute after the dom has initialized, which is good.
-    -->// Wrap in an immediately invoking function expression
-// to keep your variables off the global scope.
-(function() {
+    (function() {
 
   // Capture all of your response phrases in an object.
   var responses = {
