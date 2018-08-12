@@ -49,72 +49,24 @@
     <div class="RandomButtons">
       <p>Click each button to get a random number</p>
 
-      <!--
-        Use a common class ('answer-button' used here) for all buttons
-        so that clicks can be easily handled with a single listener.
-
-        Since you know any answers that aren't right are wrong, you can
-        simply add a 'right-answer' class for that one and leave the
-        others as is.
-      -->
-      <button onclick="myFunction(1)" type="button">Random 1</button>
-      <button onclick="myFunction(2)" type="button">Random 2</button>
-      <button onclick="myFunction(3)" type="button">Random 3</button>
-    </div>
-
-    <div>
-
-      <!--
-        Using an id is often unnecessary, so I'd switch this to a class.
-        Since the above buttons represent answers, using an "answer" class
-        on this paragraph can bring confusion, so I'd recommend using something
-        more accurate, such as "response".
-      -->
-      <p id="RandomResponse"></p>
-      <p id="RandomResponse2"></p>
-      <p id="RandomResponse3"></p>
-    </div>
-
 <!--------------------------- END OF RANDOM FORM --------------------------->
 
 <p>Click the button get the text content of the button element.</p>
 
-<button onclick="myFunction()" id="myBtn">Try it</button>
+<button onclick="myFunction()" id="myBtn">Random 1</button>
 
-<p><strong>Note:</strong> The textContent property is not supported in Internet Explorer 8 and earlier.</p>
+<p id="RandomResponse"></p>
 
-<p id="demo"></p>
+
+<!--------------------------- START OF RANDOM SCRIPTS --------------------------->        
 
 <script>
 function myFunction() {
+    var x = document.getElementById("myBtn").textContent;
     document.getElementById("RandomResponse").innerHTML = x;  
 }
 </script>
         
-<!--------------------------- START OF RANDOM SCRIPTS --------------------------->        
-<!--
-      Generally you'll want your js in a separate file. If you include the script, whether
-      inline or separate, at the bottom of the body element, as you did initially, it will
-      automatically execute after the dom has initialized, which is good.
-    -->
-<script >
-  
-  function myFunctions(responseid) {
-    if responseid = 1 {
-    document.getElementById("RandomResponse1").innerHTML = 1;  
-
-    } elseif responseid = 2 {
-    document.getElementById("RandomResponse2").innerHTML = 2;  
-      
-    } else
-    document.getElementById("RandomResponse3").innerHTML = 3;  
-    } 
-  }
-
-
-  
-//# sourceURL=pen.js
-</script>
 
 
 <!--------------------------- END OF RANDOM SCRIPTS --------------------------->
