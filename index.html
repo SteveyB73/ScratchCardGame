@@ -104,7 +104,7 @@
   var answerButtons = document.getElementsByClassName('answer-button');
 
   // Set a listener on each answerButton element.
-  for (var i = 0; i < answerButtons.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+  for (var i = 0; i < answerButtons.length; i++) {if (window.shouldStopExecution(0)) break;
 
     // Add the event listener to the element. When the event occurs,
     // the checkAnswer function will run, and will be passed an event object.
@@ -114,7 +114,7 @@
   // event is an object that is automatically passed in
   // when the listener calls this function, and event.target
   // is the element where the event occurred.
-  window.CP.exitedLoop(0);function checkAnswer(event) {
+  window.exitedLoop(0);function checkAnswer(event) {
 
     // initialize a variable for the message
     var message;
