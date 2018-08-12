@@ -45,6 +45,7 @@
 
         
 
+   <style class="cp-pen-styles"></style></head><body>
     <div class="question">
       <p>How many sides does a hexagon have?</p>
 
@@ -73,19 +74,26 @@
       <p class="response"></p>
     </div>
 
-    (function() {
+    <!--
+      Generally you'll want your js in a separate file. If you include the script, whether
+      inline or separate, at the bottom of the body element, as you did initially, it will
+      automatically execute after the dom has initialized, which is good.
+    -->
+<script >// Wrap in an immediately invoking function expression
+// to keep your variables off the global scope.
+(function () {
 
   // Capture all of your response phrases in an object.
   var responses = {
     correct: [
-      "Correct!"
-    ],
+    "Correct!"],
+
     incorrect: [
-      "Wrong!",
-      "Try Again!",
-      "Incorrect!"
-    ]
-  };
+    "Wrong!",
+    "Try Again!",
+    "Incorrect!"] };
+
+
 
   // Get the element that will display your answer.
   // getElementsByClassName returns an array, so get the
@@ -96,7 +104,7 @@
   var answerButtons = document.getElementsByClassName('answer-button');
 
   // Set a listener on each answerButton element.
-  for (var i = 0; i < answerButtons.length; i++) {
+  for (var i = 0; i < answerButtons.length; i++) {if (window.CP.shouldStopExecution(0)) break;
 
     // Add the event listener to the element. When the event occurs,
     // the checkAnswer function will run, and will be passed an event object.
@@ -106,11 +114,11 @@
   // event is an object that is automatically passed in
   // when the listener calls this function, and event.target
   // is the element where the event occurred.
-  function checkAnswer(event) {
+  window.CP.exitedLoop(0);function checkAnswer(event) {
 
     // initialize a variable for the message
     var message;
- 
+
     // get the element where the event occurred
     var element = event.target;
 
@@ -156,6 +164,8 @@
     return array[index];
   }
 })();
+//# sourceURL=pen.js
+</script>
       </section>
       
     </div>
