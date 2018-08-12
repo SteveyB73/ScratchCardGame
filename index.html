@@ -45,44 +45,123 @@
 
         
 
-<?php
-    $value1 = 'this is value 1';
-    $value2 = 'this is value 2';
-  ?>
-  <form>
+    <div class="question">
+      <p>How many sides does a hexagon have?</p>
 
-      <div id="hiddenfieldsDiv">
-        <input type="hidden" id="value1" value="<?php echo $value1; ?>" name="value1">
-        <input type="hidden" id="value2" value="<?php echo $value2; ?>" name="value2">
-      </div>
+      <!--
+        Use a common class ('answer-button' used here) for all buttons
+        so that clicks can be easily handled with a single listener.
 
-      <div id="visiblefieldsDiv">
-        <input type="text" id="input1" value="" name="input1">
-        <br/>
-        <input type="text" id="input2" value="" name="input2">
-      </div>
+        Since you know any answers that aren't right are wrong, you can
+        simply add a 'right-answer' class for that one and leave the
+        others as is.
+      -->
+      <button class="answer-button" type="button">2</button>
+      <button class="answer-button" type="button">5</button>
+      <button class="answer-button right-answer" type="button">6</button>
+      <button class="answer-button" type="button">10</button>
+    </div>
 
-      <input type="button" value="Populate" name="button" onclick="populateTextarea()">
+    <div>
 
-  </form>
+      <!--
+        Using an id is often unnecessary, so I'd switch this to a class.
+        Since the above buttons represent answers, using an "answer" class
+        on this paragraph can bring confusion, so I'd recommend using something
+        more accurate, such as "response".
+      -->
+      <p class="response"></p>
+    </div>
 
+    <!--
+      Generally you'll want your js in a separate file. If you include the script, whether
+      inline or separate, at the bottom of the body element, as you did initially, it will
+      automatically execute after the dom has initialized, which is good.
+    -->// Wrap in an immediately invoking function expression
+// to keep your variables off the global scope.
+(function() {
 
-  <script type="text/javascript">
-    function populateTextarea() {
+  // Capture all of your response phrases in an object.
+  var responses = {
+    correct: [
+      "Correct!"
+    ],
+    incorrect: [
+      "Wrong!",
+      "Try Again!",
+      "Incorrect!"
+    ]
+  };
 
-      var element = document.getElementById("hiddenfieldsDiv");
-      var numOfChildren = element.childElementCount;
+  // Get the element that will display your answer.
+  // getElementsByClassName returns an array, so get the
+  // first element in the array.
+  var response = document.getElementsByClassName('response')[0];
 
-      for (var i=1; i <= numOfChildren; i++) {
+  // Get all of the answer buttons.
+  var answerButtons = document.getElementsByClassName('answer-button');
 
-        txt = document.getElementById('value'+i).value;
-        document.getElementById('input'+i).value = txt;
-      }
+  // Set a listener on each answerButton element.
+  for (var i = 0; i < answerButtons.length; i++) {
 
+    // Add the event listener to the element. When the event occurs,
+    // the checkAnswer function will run, and will be passed an event object.
+    answerButtons[i].addEventListener('click', checkAnswer);
+  }
+
+  // event is an object that is automatically passed in
+  // when the listener calls this function, and event.target
+  // is the element where the event occurred.
+  function checkAnswer(event) {
+
+    // initialize a variable for the message
+    var message;
+ 
+    // get the element where the event occurred
+    var element = event.target;
+
+    // get all classes from target element
+    var classes = event.target.className;
+
+    // classes will be in a space-separated string, so
+    // we convert that to an array
+    classes = classes.split(' ');
+
+    // check if a specific class is in the array
+    if (classes.indexOf('right-answer') >= 0) {
+
+      // if the 'right-answer' class is there, they
+      // clicked the right answer.
+      message = getRandomArrayElement(responses.correct);
+    } else {
+
+      // otherwise, they clicked the wrong answer
+      message = getRandomArrayElement(responses.incorrect);
     }
 
-  </script>
+    // set the target element's content to the message
+    response.textContent = message;
+  }
 
+  function getRandomArrayElement(array) {
+    // This function picks a random element from an array and
+    // returns it.
+
+    // You're going to want to pick one of these array items by their
+    // index, so we'll set up variables to capture the lowest and
+    // highest possible numbers that can be used.
+    var min = 0;
+    var max = array.length - 1;
+
+    // Javascript provides random numbers using the Math.random function,
+    // wich gives a random float between 0 and 1. The expression below
+    // uses that to generate a random number within a given range - in this
+    // case, between min and max.
+    var index = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return array[index];
+  }
+})();
       </section>
       
     </div>
