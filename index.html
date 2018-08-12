@@ -54,9 +54,12 @@
 <p>Click the button get the text content of the button element.</p>
 
 <button onclick="myFunction1()" id="myBtn1">Random #1</button>
+<button onclick="myFunction2()" id="myBtn2">Random #2</button>
+<button onclick="myFunction3()" id="myBtn3">Random #3</button>
 
 <p id="RandomResponse1"></p>
-
+<p id="RandomResponse2"></p>
+<p id="RandomResponse3"></p>
 
 <!--------------------------- START OF RANDOM SCRIPTS --------------------------->        
 
@@ -64,6 +67,16 @@
 function myFunction1() {
     var x = document.getElementById("myBtn1").textContent;
     document.getElementById("RandomResponse1").innerHTML = x;  
+}
+  
+function myFunction2() {
+    var x = document.getElementById("myBtn2").textContent;
+    document.getElementById("RandomResponse2").innerHTML = x;  
+}
+  
+function myFunction3() {
+    var x = document.getElementById("myBtn3").textContent;
+    document.getElementById("RandomResponse3").innerHTML = x;  
 }
 </script>
         
