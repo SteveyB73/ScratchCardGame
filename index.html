@@ -43,11 +43,11 @@
       <section id="main_content" class="inner">
         <h1 id="scratchcardgame">Scratch Card Game - learning</h1>
 
+<!--------------------------- START OF RANDOM FORM --------------------------->
         
-
    <style class="cp-pen-styles"></style><body>
-    <div class="question">
-      <p>How many sides does a hexagon have?</p>
+    <div class="RandomButtons">
+      <p>Click each button to get a random number</p>
 
       <!--
         Use a common class ('answer-button' used here) for all buttons
@@ -57,10 +57,9 @@
         simply add a 'right-answer' class for that one and leave the
         others as is.
       -->
-      <button class="answer-button" type="button">2</button>
-      <button class="answer-button" type="button">5</button>
-      <button class="answer-button right-answer" type="button">6</button>
-      <button class="answer-button" type="button">10</button>
+      <button onclick="myFunction(1)" type="button">Random 1</button>
+      <button onclick="myFunction(2)" type="button">Random 2</button>
+      <button onclick="myFunction(3)" type="button">Random 3</button>
     </div>
 
     <div>
@@ -71,102 +70,44 @@
         on this paragraph can bring confusion, so I'd recommend using something
         more accurate, such as "response".
       -->
-      <p class="response"></p>
+      <p id="RandomResponse1"></p>
+      <p id="RandomResponse2"></p>
+      <p id="RandomResponse3"></p>
     </div>
 
-    <!--
+<!--------------------------- END OF RANDOM FORM --------------------------->
+        
+        
+<!--------------------------- START OF RANDOM SCRIPTS --------------------------->        
+<!--
       Generally you'll want your js in a separate file. If you include the script, whether
       inline or separate, at the bottom of the body element, as you did initially, it will
       automatically execute after the dom has initialized, which is good.
     -->
-<script >// Wrap in an immediately invoking function expression
-// to keep your variables off the global scope.
-(function () {
+<script >
+  
+  function myFunction(responseid) {
+    if responseid = 1 {
+    document.getElementById("RandomResponse1").innerHTML = 1;  
 
-  // Capture all of your response phrases in an object.
-  var responses = {
-    correct: [
-    "Correct!"],
-
-    incorrect: [
-    "Wrong!",
-    "Try Again!",
-    "Incorrect!"] };
-
-
-
-  // Get the element that will display your answer.
-  // getElementsByClassName returns an array, so get the
-  // first element in the array.
-  var response = document.getElementsByClassName('response')[0];
-
-  // Get all of the answer buttons.
-  var answerButtons = document.getElementsByClassName('answer-button');
-
-  // Set a listener on each answerButton element.
-  for (var i = 0; i < answerButtons.length; i++) {if (window.shouldStopExecution(0)) break;
-
-    // Add the event listener to the element. When the event occurs,
-    // the checkAnswer function will run, and will be passed an event object.
-    answerButtons[i].addEventListener('click', checkAnswer);
+    } elseif responseid = 2 {
+    document.getElementById("RandomResponse2").innerHTML = 2;  
+      
+    } else
+    document.getElementById("RandomResponse3").innerHTML = 3;  
+    } 
   }
 
-  // event is an object that is automatically passed in
-  // when the listener calls this function, and event.target
-  // is the element where the event occurred.
-  window.exitedLoop(0);function checkAnswer(event) {
 
-    // initialize a variable for the message
-    var message;
-
-    // get the element where the event occurred
-    var element = event.target;
-
-    // get all classes from target element
-    var classes = event.target.className;
-
-    // classes will be in a space-separated string, so
-    // we convert that to an array
-    classes = classes.split(' ');
-
-    // check if a specific class is in the array
-    if (classes.indexOf('right-answer') >= 0) {
-
-      // if the 'right-answer' class is there, they
-      // clicked the right answer.
-      message = getRandomArrayElement(responses.correct);
-    } else {
-
-      // otherwise, they clicked the wrong answer
-      message = getRandomArrayElement(responses.incorrect);
-    }
-
-    // set the target element's content to the message
-    response.textContent = message;
-  }
-
-  function getRandomArrayElement(array) {
-    // This function picks a random element from an array and
-    // returns it.
-
-    // You're going to want to pick one of these array items by their
-    // index, so we'll set up variables to capture the lowest and
-    // highest possible numbers that can be used.
-    var min = 0;
-    var max = array.length - 1;
-
-    // Javascript provides random numbers using the Math.random function,
-    // wich gives a random float between 0 and 1. The expression below
-    // uses that to generate a random number within a given range - in this
-    // case, between min and max.
-    var index = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    return array[index];
-  }
-})();
+  
 //# sourceURL=pen.js
 </script>
+
+
+<!--------------------------- END OF RANDOM SCRIPTS --------------------------->
+        
       </section>
+
       
     </div>
 
